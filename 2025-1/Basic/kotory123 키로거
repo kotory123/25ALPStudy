@@ -1,0 +1,51 @@
+#include <iostream>
+#include <deque>
+using namespace std;
+
+int main() {
+    int t;
+    cin >> t;
+
+    while (t--) {
+        string s;
+        cin >> s;
+
+        deque<char> result;  
+        int cursor = 0;  
+
+        for (char c : s) {
+            if (c == '<') {
+             
+                if (cursor > 0) {
+                    cursor--;
+                }
+            }
+            else if (c == '-') {
+              
+                if (cursor > 0) {
+                    result.erase(result.begin() + cursor - 1);
+                    cursor--;  
+                }
+            }
+            else if (c == '>') {
+              
+                if (cursor < result.size()) {
+                    cursor++;
+                }
+            }
+            else {
+             
+                result.insert(result.begin() + cursor, c);
+                cursor++;  
+            }
+        }
+
+     
+        for (char c : result) {
+            cout << c;
+        }
+        cout << endl;
+    }
+
+    return 0;
+}
